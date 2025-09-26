@@ -214,8 +214,26 @@ Orders go through the following statuses:
   - Request Body: Updated Customer object
   - Returns: Updated Customer
 
-- `DELETE /api/customers/{id}` - Delete a customer
+- `DELETE /api/customers/{id}` - Delete a customer by ID
   - Returns: 204 No Content on success
+  
+- `DELETE /api/customers/phone/{phoneNumber}` - Delete a customer by phone number
+  - Path Parameters:
+    - `phoneNumber`: 10-digit phone number (digits only)
+  - Returns: 
+    - 200 OK with success message and deleted customer ID
+    - 400 Bad Request if phone number format is invalid
+    - 404 Not Found if no customer with the phone number exists
+    - 500 Internal Server Error for other errors
+  - Example Response (200 OK):
+    ```json
+    {
+      "status": "success",
+      "message": "Customer deleted successfully",
+      "phoneNumber": "1234567890",
+      "deletedCustomerId": 1
+    }
+    ```
 
 - `GET /api/customers/exists/email/{email}` - Check if customer exists by email
   - Returns: boolean

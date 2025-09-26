@@ -37,19 +37,20 @@ public class HomeController {
             • GET    /api/orders/status/{status}  - Get orders by status
 
             Customer Endpoints:
-            • GET    /api/customers               - Get all customers
-            • POST   /api/customers               - Create a new customer
-            • GET    /api/customers/{id}          - Get customer by ID
-            • GET    /api/customers/email/{email} - Get customer by email
-            • GET    /api/customers/phone/{phone} - Get customer by phone
-            • PUT    /api/customers/{id}          - Update customer
-            • DELETE /api/customers/{id}          - Delete customer
-            • GET    /api/customers/exists/email/{email}    - Check if email exists
-            • GET    /api/customers/exists/phone/{phone}    - Check if phone exists
+            • GET    /api/customers                     - Get all customers
+            • POST   /api/customers                     - Create a new customer
+            • GET    /api/customers/{id}                - Get customer by ID
+            • GET    /api/customers/email/{email}       - Get customer by email
+            • GET    /api/customers/phone/{phone}       - Get customer by phone
+            • PUT    /api/customers/{id}                - Update customer
+            • DELETE /api/customers/{id}                - Delete customer by ID
+            • DELETE /api/customers/phone/{phoneNumber}  - Delete customer by phone number (10 digits)
+            • GET    /api/customers/exists/email/{email} - Check if email exists
+            • GET    /api/customers/exists/phone/{phone} - Check if phone exists
 
             Documentation:
             • Swagger UI: /swagger-ui.html
-            • H2 Console: /h2-console (JDBC URL: jdbc:h2:mem:restaurantdb, Username: sa, Password: password)
+            • Derby Database: Available at startup (Database: restaurantdb, Username: app, Password: empty) - For development only
             """.replaceAll("            ", "");
     }
 }

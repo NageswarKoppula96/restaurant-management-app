@@ -73,10 +73,15 @@ class OrderControllerTest {
         ResponseEntity<OrderResponse> response = orderController.getLatestOrderByCustomerPhone(TEST_PHONE);
 
         // Assert
-        assertNotNull(response);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertNotNull(response.getBody());
-        assertEquals(TEST_ORDER_ID, response.getBody().getId());
+        assertNotNull(response, "Response should not be null");
+        assertEquals(HttpStatus.OK, response.getStatusCode(), "Status code should be OK");
+        
+        OrderResponse responseBody = response.getBody();
+        assertNotNull(responseBody, "Response body should not be null");
+        assertEquals(TEST_ORDER_ID, responseBody.getId(), "Order ID should match");
+        assertEquals(OrderStatus.PENDING, responseBody.getStatus(), "Order status should be PENDING");
+        assertEquals(0, new BigDecimal("100.00").compareTo(responseBody.getTotalAmount()), 
+            "Total amount should match");
     }
 
     @Test
@@ -88,9 +93,10 @@ class OrderControllerTest {
         ResponseEntity<OrderResponse> response = orderController.getLatestOrderByCustomerPhone(TEST_PHONE);
 
         // Assert
-        assertNotNull(response);
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertFalse(response.hasBody());
+        assertNotNull(response, "Response should not be null");
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode(), "Status code should be NOT_FOUND");
+        assertFalse(response.hasBody(), "Response should not have a body");
+        assertNull(response.getBody(), "Response body should be null");
     }
 
     @Test
@@ -99,8 +105,9 @@ class OrderControllerTest {
         ResponseEntity<OrderResponse> response = orderController.getLatestOrderByCustomerPhone("");
 
         // Assert
-        assertNotNull(response);
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertFalse(response.hasBody());
+        assertNotNull(response, "Response should not be null");
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode(), "Status code should be BAD_REQUEST");
+        assertFalse(response.hasBody(), "Response should not have a body");
+        assertNull(response.getBody(), "Response body should be null");
     }
 }
