@@ -38,6 +38,7 @@ Thumbs.db
 /derbydb/
 *.dat
 *.log
+derby.log
 *.dat.*
 
 # Compiled class file
