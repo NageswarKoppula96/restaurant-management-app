@@ -1,0 +1,27 @@
+{
+  "name": "Restaurant Management App",
+  "description": "A Spring Boot application for managing restaurant operations",
+  "repository": "https://github.com/yourusername/restaurant-management-app",
+  "logo": "https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg",
+  "keywords": ["spring boot", "java", "restaurant", "api"],
+  "addons": ["heroku-postgresql"],
+  "env": {
+    "SPRING_PROFILES_ACTIVE": {
+      "description": "Active Spring profile",
+      "value": "prod"
+    },
+    "SPRING_JPA_HIBERNATE_DDL_AUTO": {
+      "description": "Hibernate DDL mode",
+      "value": "update"
+    },
+    "CORS_ALLOWED_ORIGINS": {
+      "description": "Allowed CORS origins (comma-separated)",
+      "value": "*"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/java"
+    }
+  ]
+}

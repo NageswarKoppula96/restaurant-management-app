@@ -1,0 +1,8 @@
+build:
+  docker:
+    web: Dockerfile
+  config:
+    SPRING_PROFILES_ACTIVE: prod
+    JAVA_OPTS: -Xmx512m -Dserver.port=$PORT
+run:
+  web: java $JAVA_OPTS -jar target/restaurant-management-app.jar --spring.profiles.active=prod
