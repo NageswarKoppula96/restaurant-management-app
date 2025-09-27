@@ -1,5 +1,5 @@
 # Use the official Maven image as the build stage
-FROM maven:3.8.6-openjdk-17 AS build
+FROM maven:3.8.7-eclipse-temurin-17 AS build
 WORKDIR /app
 
 # Copy the Maven project files
