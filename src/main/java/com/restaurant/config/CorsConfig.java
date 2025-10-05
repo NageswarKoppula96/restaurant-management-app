@@ -35,14 +35,27 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         
-        // Set allowed origin patterns from properties or default to all
+        // Handle allowed origins
         if (allowedOrigins != null && allowedOrigins.length > 0 && !allowedOrigins[0].isEmpty()) {
-            // If specific origins are provided, use them
-            config.setAllowedOrigins(Arrays.asList(allowedOrigins));
+            // Check if we have any wildcard patterns
+            boolean hasWildcard = Arrays.stream(allowedOrigins).anyMatch(origin -> origin.contains("*"));
+            
+            if (hasWildcard) {
+                // If we have wildcard patterns, use allowedOriginPatterns
+                config.setAllowedOriginPatterns(Arrays.asList(allowedOrigins));
+                // When using patterns with credentials, we need to be explicit
+                if (allowCredentials) {
+                    config.setAllowCredentials(true);
+                }
+            } else {
+                // No wildcards, use regular allowedOrigins
+                config.setAllowedOrigins(Arrays.asList(allowedOrigins));
+                config.setAllowCredentials(allowCredentials);
+            }
         } else {
             // Default to allowing all origins using patterns
             config.setAllowedOriginPatterns(Collections.singletonList("*"));
-            // When using patterns, we need to be careful with credentials
+            // When using patterns with credentials, we need to be explicit
             if (allowCredentials) {
                 config.setAllowedOrigins(null); // Clear any previously set origins
             }
