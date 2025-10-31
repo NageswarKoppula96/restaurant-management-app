@@ -1,8 +1,5 @@
 package com.restaurant.controller;
 
-// These imports are used in method return types and parameters
-import com.restaurant.entity.Customer; // Used in getCustomerByPhone return type
-import com.restaurant.entity.Order; // Used in getOrdersByCustomerPhone return type
 import com.restaurant.repository.CustomerRepository;
 import com.restaurant.repository.OrderRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,8 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// Used in method return types
-import java.util.List; // Used in getAllCustomers and getOrdersByCustomerPhone return types
 
 /**
  * Debug controller for development and troubleshooting purposes.

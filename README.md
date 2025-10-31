@@ -178,9 +178,27 @@ springdoc.swagger-ui.path=/swagger-ui.html
     }
     ```
 - `GET /api/orders` - Get all orders
+### Order Endpoints
+
+- `POST /api/orders` - Create a new order
+- `GET /api/orders` - Get all orders
 - `GET /api/orders/{id}` - Get order by ID
 - `GET /api/orders/customer/{email}` - Get orders by customer email
 - `PUT /api/orders/{id}/status` - Update order status
+- `GET /api/orders/status/{status}` - Get orders by status
+
+### Customer Endpoints
+
+- `GET /api/customers` - Get all customers
+- `POST /api/customers` - Create a new customer
+- `GET /api/customers/{id}` - Get customer by ID
+- `GET /api/customers/email/{email}` - Get customer by email
+- `GET /api/customers/phone/{phone}` - Get customer by phone
+- `PUT /api/customers/{id}` - Update customer
+- `DELETE /api/customers/{id}` - Delete customer by ID
+- `DELETE /api/customers/phone/{phoneNumber}` - Delete customer by phone number
+- `GET /api/customers/exists/email/{email}` - Check if email exists
+- `GET /api/customers/exists/phone/{phone}` - Check if phone exists
   - Request Body:
     ```json
     {
